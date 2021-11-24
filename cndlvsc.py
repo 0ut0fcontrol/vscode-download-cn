@@ -17,7 +17,7 @@
 
 更多介绍： https://note.qidong.name/2020/05/dl-vscode-cn/
 """
-import re
+import shutil
 import tarfile
 from argparse import ArgumentParser
 from pathlib import Path
@@ -70,7 +70,7 @@ def main():
                 server_dir.parent.mkdir(parents=True, exist_ok=True)
                 with tarfile.open(fname, "r:gz") as tar:
                     tar.extractall(path="./")
-                    Path("./vscode-server-linux-x64").rename(server_dir)
+                    shutil.move("./vscode-server-linux-x64", server_dir)
                     print(f"extract vscode-server to {server_dir}")
         else:
             download(dl_url, fname)
